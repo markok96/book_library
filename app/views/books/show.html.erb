@@ -1,0 +1,21 @@
+<div class="max-w-3xl mx-auto p-6 bg-white rounded shadow-md">
+  <h1 class="text-3xl font-bold mb-4"><%= @book.title %></h1>
+
+  <p class="mb-2"><strong class="font-semibold">Genre:</strong> <%= @book.genre.presence || "N/A" %></p>
+
+  <p class="mb-4"><strong class="font-semibold">Description:</strong> <%= @book.description.presence || "No description available." %></p>
+
+  <p class="mb-6">
+    <strong class="font-semibold">Author:</strong>
+    <% if @book.author %>
+      <%= link_to @book.author.name, author_path(@book.author), class: "text-blue-600 hover:underline" %>
+    <% else %>
+      <span class="text-gray-500">No author assigned</span>
+    <% end %>
+  </p>
+
+  <div class="flex space-x-4">
+    <%= link_to "Edit", edit_book_path(@book), class: "bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded" %>
+    <%= link_to "Back", books_path, class: "bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded" %>
+  </div>
+</div>

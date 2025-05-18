@@ -1,0 +1,26 @@
+<div class="max-w-3xl mx-auto p-6 bg-white rounded shadow-md">
+  <h2 class="text-3xl font-bold mb-4"><%= @author.name %></h2>
+
+  <p class="mb-6"><strong class="font-semibold">Bio:</strong> <%= @author.bio.presence || "No bio available." %></p>
+
+  <h3 class="text-xl font-semibold mb-2">Books</h3>
+  
+  <% if @author.books.any? %>
+    <ul class="list-disc pl-6 space-y-1 mb-6">
+      <% @author.books.each do |book| %>
+        <li>
+          <%= link_to book.title, book_path(book), class: "text-blue-600 hover:underline" %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500 mb-6">No books found for this author.</p>
+  <% end %>
+
+  <p class="mb-4"><strong>Total Books:</strong> <%= @author.total_books %></p>
+
+  <div class="flex space-x-4">
+    <%= link_to 'Add a new Book', new_book_path(author_id: @author.id), class: "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded" %>
+    <%= link_to 'Back', authors_path, class: "bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded" %>
+  </div>
+</div>
